@@ -2,43 +2,37 @@ import random
 
 def generate_random_matrix(rows, cols):
     matrix = []
-    for _ in range(rows):
-        row = [random.randint(1, 100) for _ in range(cols)]
-        matrix.append(row)
+    for row in range(rows):
+        list = []
+        for column in range(cols):
+            list.append(random.randint(1,100))
+        matrix.append(list)
+        print(list,"\n")
     return matrix
 
 def get_column_sum(matrix, column_index):
-    if column_index < 0 or column_index >= len(matrix[0]):
-        return None  
-    column_sum = 0
-    for row in matrix:
-        column_sum += row[column_index]
-    return column_sum
+    sum = 0
+    for row, value in enumerate(matrix):
+        sum += value[column_index]
+    return sum
 
 def get_row_average(matrix, row_index):
-    if row_index < 0 or row_index >= len(matrix):
-        return None  
-    row = matrix[row_index]
-    row_average = sum(row) / len(row)
-    return row_average
+    mean = 0
+    for column, value in enumerate(matrix[row_index]):
+        mean += value
+    mean /= len(matrix[row_index])
+    return mean
 
-rows = 4
-cols = 3
-matrix = generate_random_matrix(rows, cols)
-print("Generated Matrix:")
-for row in matrix:
-    print(row)
+rows = int(input("Input rows:   "))
+columns = int(input("Input cols:   "))
 
-column_index = 1
-column_sum = get_column_sum(matrix, column_index)
-if column_sum is not None:
-    print(f"Sum of column {column_index}: {column_sum}")
-else:
-    print(f"Invalid column index: {column_index}")
+matrix = generate_random_matrix(rows, columns)
 
-row_index = 2
-row_average = get_row_average(matrix, row_index)
-if row_average is not None:
-    print(f"Average of row {row_index}: {row_average}")
-else:
-    print(f"Invalid row index: {row_index}")
+rows = int(input("Input the row index, to calculate the mean of it's elements:   "))
+columns = int(input("Input the column's index to calculate the sum of elements:   "))
+
+mean = get_row_average(matrix, rows)
+print(f"Mean of {rows}th row is {mean}")
+
+sum = get_column_sum(matrix, columns)
+print(f"Sum of {columns}th column is {sum}")

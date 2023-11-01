@@ -1,33 +1,49 @@
+import random
 
-expression = input("Enter an expression: ")
+def custom_add(x, y):
+    return x + y
 
-expression = expression.replace(" ", "")  
-operators = "+-*/"
-operator = None
+def custom_subtract(x, y):
+    return x - y
 
-for op in operators:
-    if op in expression:
-        operator = op
-        num1, num2 = expression.split(op)
-        num1, num2 = float(num1), float(num2)
-        break
+def custom_multiply(x, y):
+    return x * y
 
-if operator:
-    if operator == '+':
-        result = num1 + num2
-    elif operator == '-':
-        result = num1 - num2
-    elif operator == '*':
-        result = num1 * num2
-    elif operator == '/':
-        if num2 != 0:
-            result = num1 / num2
+def custom_divide(x, y):
+    if y == 0:
+        return "Cannot divide by zero"
+    return x / y
+
+def my_secret_calculator():
+    while True:
+        print("Welcome to the Custom Calculator")
+        print("Options:")
+        print("Enter 'add' for addition")
+        print("Enter 'subtract' for subtraction")
+        print("Enter 'multiply' for multiplication")
+        print("Enter 'divide' for division")
+        print("Enter 'exit' to quit")
+
+        user_input = input(": ")
+
+        if user_input == "exit":
+            break
+        elif user_input in ["add", "subtract", "multiply", "divide"]:
+            num1 = float(input("Enter the first number: "))
+            num2 = float(input("Enter the second number: ")
+
+            if user_input == "add":
+                print("Result: ", custom_add(num1, num2))
+            elif user_input == "subtract":
+                print("Result: ", custom_subtract(num1, num2))
+            elif user_input == "multiply":
+                print("Result: ", custom_multiply(num1, num2))
+            elif user_input == "divide":
+                print("Result: ", custom_divide(num1, num2))
+            else:
+                print("Invalid input")
         else:
-            print("Error: Division by zero.")
-            result = None
-else:
-    print("Error: Invalid operator or expression format.")
-    result = None
+            print("Invalid input")
 
-if result is not None:
-    print("Result:", result)
+if __name__ == "__main__":
+    my_secret_calculator()
